@@ -1,32 +1,22 @@
 import streamlit as st
 import pandas as pd
 
-from utils.Datasets.TransporteEscolar import load_data_transporte
-
-from utils.Datasets.Escolas2022 import load_data_escolas_2022
-from utils.Datasets.Escolas2023 import load_data_escolas_2023
-
-from utils.Datasets.Estudantes2022 import load_data_estudantes_2022
-from utils.Datasets.Estudantes2023 import load_data_estudantes_2023
+from utils.Datasets.TransporteEscolar import TransporteEscolar
+from utils.Datasets.Escolas import Escolas2021, Escolas2022, Escolas2023
+from utils.Datasets.Estudantes import Estudantes2021, Estudantes2022, Estudantes2023
 
 
 def show_data_columns(data : pd.DataFrame) -> None:
     data = list(data.columns)
     st.write(*data, unsafe_allow_html=True)
-    pass
-
-
-escolas22 = load_data_escolas_2022()
-escolas23 = load_data_escolas_2023()
-
-estudantes22 = load_data_estudantes_2022()
-estudantes23 = load_data_estudantes_2023()
 
 datasets = {
-    "Escolas 2022": escolas22,
-    "Escolas 2023": escolas23,
-    "Estudantes 2022" : estudantes22,
-    "Estudantes 2023" : estudantes23
+    "Escolas 2021": Escolas2021,    
+    "Escolas 2022": Escolas2022,
+    "Escolas 2023": Escolas2023,
+    "Estudantes 2021" : Estudantes2021,
+    "Estudantes 2022" : Estudantes2022,
+    "Estudantes 2023" : Estudantes2023
     }
 
 selected_dataset_name = st.selectbox(
